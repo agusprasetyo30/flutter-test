@@ -17,5 +17,6 @@ samples, guidance on mobile development, and a full API reference.
 
 # Log Perkuliahan / Test
 - [X] Membuat tombol baru untuk membesarkan tulisan (Implementasi `Stateless` & `Stateful`)
-- ...
-- ...
+- [X] Membuat tombol untuk mengecilkan tulisan
+- []
+- []
