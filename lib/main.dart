@@ -45,6 +45,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _incrementCounter() {
     setState(() {
+      // Untuk mengupdate build/tampilan dari state
       // This call to setState tells the Flutter framework that something has
       // changed in this State, which causes it to rerun the build method below
       // so that the display can reflect the updated values. If we changed
@@ -62,14 +63,14 @@ class _MyHomePageState extends State<MyHomePage> {
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
-    return Scaffold( // Kotak
+    return Scaffold(
+      // Kotak
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
       body: Center(
-      
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
         child: Column(
@@ -89,12 +90,8 @@ class _MyHomePageState extends State<MyHomePage> {
           // horizontal).
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
-              'Jumlah kamu menekan tombol loh :',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
+            BiggerText(
+              text: 'Jumlah kamu menekan tombol loh: $_counter',
             ),
           ],
         ),
@@ -106,6 +103,64 @@ class _MyHomePageState extends State<MyHomePage> {
         tooltip: 'Increment',
         child: const Icon(Icons.add), //Ini untuk gambar
       ), // This trailing comma makes auto-formatting nicer for build methods.
+    );
+  }
+}
+
+// NEW
+class heading extends StatelessWidget {
+  final String text;
+
+  const heading({required this.text});
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(text,
+        style: TextStyle(
+          fontSize: 24.0, 
+          fontWeight: FontWeight.bold)
+        );
+  }
+}
+
+class BiggerText extends StatefulWidget {
+  final String text;
+
+  BiggerText({required this.text});
+
+  @override
+  State<BiggerText> createState() => _BiggerTextState();
+}
+
+class _BiggerTextState extends State<BiggerText> {
+  double _textSize = 16.0;
+
+  // Fungsi untuk membesarkan text
+  void _perbesarText() {
+    setState(() {
+      _textSize += 6.0;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        Text(
+          widget.text,
+          style: TextStyle(
+            fontSize: _textSize,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        ElevatedButton(
+          onPressed: _perbesarText, 
+          child: Icon(Icons.add),
+          // Text('Perbesar loh'),
+
+        ),
+      ],
     );
   }
 }
