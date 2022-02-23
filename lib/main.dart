@@ -90,14 +90,16 @@ class _MyHomePageState extends State<MyHomePage> {
           // horizontal).
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            heading(text: "Ini mencoba menggunakan Stateless"),
             BiggerText(
-              text: 'Jumlah kamu menekan tombol loh: $_counter',
+              text:
+                  'Ini menggunakan Stateful, Jumlah kamu menekan tombol loh: $_counter',
             ),
           ],
         ),
       ),
 
-      // Wadah
+      // Wadah / tempat untuk menambahkan button
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
         tooltip: 'Increment',
@@ -107,7 +109,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-// NEW
+// Test untuk implementasi Stateless
 class heading extends StatelessWidget {
   final String text;
 
@@ -117,13 +119,14 @@ class heading extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(text,
         style: TextStyle(
-          fontSize: 24.0, 
-          fontWeight: FontWeight.bold)
-        );
+          fontSize: 24.0,
+          fontWeight: FontWeight.bold,
+        ));
   }
 }
 
 class BiggerText extends StatefulWidget {
+  // Variabel untuk menampung data text
   final String text;
 
   BiggerText({required this.text});
@@ -133,12 +136,21 @@ class BiggerText extends StatefulWidget {
 }
 
 class _BiggerTextState extends State<BiggerText> {
+  // Variabel untuk menampung data variabel ukuran
+  // '_' berarti dia bersifat private
   double _textSize = 16.0;
 
   // Fungsi untuk membesarkan text
   void _perbesarText() {
     setState(() {
       _textSize += 6.0;
+    });
+  }
+
+  // Fungsi untuk membesarkan text
+  void _perkecilText() {
+    setState(() {
+      _textSize -= 6.0;
     });
   }
 
@@ -149,17 +161,21 @@ class _BiggerTextState extends State<BiggerText> {
       children: <Widget>[
         Text(
           widget.text,
+          textAlign: TextAlign.center,
           style: TextStyle(
             fontSize: _textSize,
             fontWeight: FontWeight.bold,
           ),
         ),
         ElevatedButton(
-          onPressed: _perbesarText, 
+          onPressed: _perbesarText,
           child: Icon(Icons.add),
           // Text('Perbesar loh'),
-
         ),
+        ElevatedButton(
+          onPressed: _perkecilText, 
+          child: Icon(Icons.remove)
+        )
       ],
     );
   }
