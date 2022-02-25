@@ -84,7 +84,7 @@ class _MyHomePageState extends State<MyHomePage> {
               textAlign: TextAlign.left,
             ),
             BiggerText(
-              text:'Ini menggunakan Stateful, Jumlah kamu menekan tombol loh: $_counter',
+              text:'Jumlah kamu menekan tombol : $_counter',
             ),
           ],
         ),
